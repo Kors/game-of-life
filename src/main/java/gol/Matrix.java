@@ -88,4 +88,16 @@ public class Matrix implements Cloneable {
 				columns * 33 +
 				gameField[1][1].ordinal() * 33 * 33;
 	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public CellState getCellState(int row, int col) {
+		return gameField[row + 1][col + 1];
+	}
 }

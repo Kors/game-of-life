@@ -19,7 +19,12 @@ public class GameOfLife {
 	}
 
 	static Matrix calcNextStep(Matrix before) {
-		Matrix after = before.clone();
-		return after;
+		CellState[][] after = new CellState[before.getRows()][before.getColumns()];
+		for (int row = 0; row < before.getRows(); row++) {
+			for (int col = 0; col < before.getColumns(); col++) {
+				after[row][col] = getNextCellState(before.getCellState(row, col), before.getNeighboursCount(row, col));
+			}
+		}
+		return new Matrix(after);
 	}
 }

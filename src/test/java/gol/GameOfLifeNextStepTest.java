@@ -31,7 +31,7 @@ public class GameOfLifeNextStepTest {
 				{DEAD, ALIVE, ALIVE},
 				{DIEING, DIEING, BEARING}};
 		CellState[][] after = {
-				{DEAD, BEARING, DEAD},
+				{DIEING, BEARING, DEAD},
 				{DEAD, DIEING, ALIVE},
 				{ALIVE, ALIVE, ALIVE}};
 		Matrix m1 = new Matrix(before);
