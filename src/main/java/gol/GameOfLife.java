@@ -17,4 +17,9 @@ public class GameOfLife {
 	static CellState getNextCellState(CellState state, int neighboursCount) {
 		return nextState[state.ordinal()][neighboursCount];
 	}
+
+	static Matrix calcNextStep(Matrix before) {
+		Matrix after = before.clone();
+		return after;
+	}
 }
