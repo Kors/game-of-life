@@ -29,9 +29,9 @@ public class GameOfLife {
 	}
 
 	private static int isAlive(CellState[][] state, int row, int col) {
-		if (row < 0 || row > state.length)
+		if (row < 0 || row >= state.length)
 			return 0;
-		if (col < 0 || col > state[row].length)
+		if (col < 0 || col >= state[row].length)
 			return 0;
 		CellState cs = state[row][col];
 		return ALIVE.equals(cs) ? 1 : 0;
