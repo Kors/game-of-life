@@ -7,9 +7,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static gol.CellState.ALIVE;
-import static gol.CellState.DEAD;
-import static gol.GameOfLife.getNeighboursCount;
+import static gol.CellState.*;
 import static junit.framework.TestCase.assertEquals;
 
 /**
@@ -34,7 +32,7 @@ public class GameOfLifeNeighborsTest {
 		CellState[][] state = {
 				{ALIVE, DEAD, DEAD},
 				{DEAD, ALIVE, ALIVE},
-				{DEAD, ALIVE, ALIVE}};
+				{DIEING, DIEING, BEARING}};
 		Matrix m1 = new Matrix(state);
 
 		Object[][] params = new Object[][]{
@@ -48,9 +46,14 @@ public class GameOfLifeNeighborsTest {
 
 	@Test
 	public void neighborsTest() {
-		assertEquals(1, getNeighboursCount(stateBefore.getGameField(), 0, 0));
-		assertEquals(3, getNeighboursCount(stateBefore.getGameField(), 0, 1));
-		assertEquals(2, getNeighboursCount(stateBefore.getGameField(), 0, 2));
-		assertEquals(4, getNeighboursCount(stateBefore.getGameField(), 1, 1));
+		assertEquals(1, stateBefore.getNeighboursCount(0, 0));
+		assertEquals(3, stateBefore.getNeighboursCount(0, 1));
+		assertEquals(2, stateBefore.getNeighboursCount(0, 2));
+		assertEquals(4, stateBefore.getNeighboursCount(1, 0));
+		assertEquals(4, stateBefore.getNeighboursCount(1, 1));
+		assertEquals(2, stateBefore.getNeighboursCount(1, 2));
+		assertEquals(2, stateBefore.getNeighboursCount(2, 0));
+		assertEquals(3, stateBefore.getNeighboursCount(2, 1));
+		assertEquals(3, stateBefore.getNeighboursCount(2, 2));
 	}
 }
