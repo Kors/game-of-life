@@ -48,6 +48,9 @@ public class GameOfLifeNeighborsTest {
 
 	@Test
 	public void neighborsTest() {
-		assertEquals(4, getNeighboursCount(stateBefore.gameField, 1, 1));
+		assertEquals(1, getNeighboursCount(stateBefore.getGameField(), 0, 0));
+		assertEquals(3, getNeighboursCount(stateBefore.getGameField(), 0, 1));
+		assertEquals(2, getNeighboursCount(stateBefore.getGameField(), 0, 2));
+		assertEquals(4, getNeighboursCount(stateBefore.getGameField(), 1, 1));
 	}
 }
