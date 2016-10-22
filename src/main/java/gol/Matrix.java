@@ -1,6 +1,7 @@
 package gol;
 
 import static gol.CellState.ALIVE;
+import static gol.CellState.DIEING;
 
 /**
  * @author K.ilya
@@ -30,9 +31,15 @@ public class Matrix {
 		int sumNeighbours = 0;
 		for (int rowShift = -1; rowShift <= 1; rowShift++) {
 			for (int colShift = -1; colShift <= 1; colShift++) {
-				sumNeighbours += ALIVE.equals(gameField[row + 1 + rowShift][col + 1 + colShift]) ? 1 : 0;
+				sumNeighbours += isAlive(row + 1 + rowShift, col + 1 + colShift) ? 1 : 0;
 			}
 		}
-		return sumNeighbours - (ALIVE.equals(gameField[row + 1][col + 1]) ? 1 : 0);
+		return sumNeighbours - (isAlive(row + 1, col + 1) ? 1 : 0);
+	}
+
+	// internal numbers
+	private boolean isAlive(int row, int col) {
+		return ALIVE.equals(gameField[row][col]) ||
+				DIEING.equals(gameField[row][col]);
 	}
 }
