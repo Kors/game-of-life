@@ -2,8 +2,6 @@ package gol;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import static gol.GameOfLife.calcNextStep;
 import static junit.framework.TestCase.assertEquals;
@@ -11,7 +9,6 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * @author K.ilya
  */
-@RunWith(Parameterized.class)
 public class GameOfLifeMoveOnTest {
 
 	GameOfLife gol;
