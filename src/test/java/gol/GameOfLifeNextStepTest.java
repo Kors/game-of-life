@@ -26,19 +26,27 @@ public class GameOfLifeNextStepTest {
 
 	@Parameterized.Parameters
 	public static Collection<Object[]> data() {
-		CellState[][] before = {
+		Matrix m0 = new Matrix(new CellState[][]{
 				{ALIVE, DEAD, DEAD},
 				{DEAD, ALIVE, ALIVE},
-				{DIEING, DIEING, BEARING}};
-		CellState[][] after = {
+				{DIEING, DIEING, BEARING}});
+		Matrix m1 = new Matrix(new CellState[][]{
 				{DIEING, BEARING, DEAD},
 				{DEAD, DIEING, ALIVE},
-				{ALIVE, ALIVE, ALIVE}};
-		Matrix m1 = new Matrix(before);
-		Matrix m2 = new Matrix(after);
+				{ALIVE, ALIVE, ALIVE}});
+		Matrix m2 = new Matrix(new CellState[][]{
+				{DEAD, ALIVE, DEAD},
+				{DEAD, DEAD, ALIVE},
+				{ALIVE, DIEING, ALIVE}});
+		Matrix m3 = new Matrix(new CellState[][]{
+				{DEAD, DIEING, DEAD},
+				{BEARING, DEAD, ALIVE},
+				{DIEING, ALIVE, ALIVE}});
 
 		Object[][] params = new Object[][]{
+				{m0, m1},
 				{m1, m2},
+				{m2, m3},
 		};
 		return Arrays.asList(params);
 	}
