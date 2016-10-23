@@ -30,11 +30,16 @@ public class GameOfLife {
 		return new Matrix(after);
 	}
 
-	public void initGameField() {
-		matrix = null;
+	public void initGameField(int[][] m) {
+		matrix = new Matrix(m);
 	}
 
 	public void moveOn() {
+		matrix = calcNextStep(matrix);
+		repaint();
+	}
 
+	private void repaint() {
+		matrix.show();
 	}
 }

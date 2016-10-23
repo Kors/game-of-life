@@ -14,15 +14,17 @@ public class Matrix implements Cloneable {
 
 	Matrix(CellState[][] stateMatrix) {
 		this.rows = stateMatrix.length;
-		this.columns = stateMatrix[0].length;
+		this.columns = stateMatrix[0].length;  // TODO should be better ?!
 		initField(stateMatrix);
 	}
 
-	public Matrix(int[][] ints) {
+	public Matrix(int[][] stateCodes) {
+		this.rows = stateCodes.length;
+		this.columns = stateCodes[0].length;  // TODO should be better ?!
 		initEmptyField();
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
-				gameField[row + 1][col + 1] = CellState.valueOf(ints[row][col]);
+				gameField[row + 1][col + 1] = CellState.valueOf(stateCodes[row][col]);
 			}
 		}
 	}
@@ -108,5 +110,14 @@ public class Matrix implements Cloneable {
 
 	public CellState getCellState(int row, int col) {
 		return gameField[row + 1][col + 1];
+	}
+
+	public void show() {
+		for (int row = 1; row < rows + 2; row++) {
+			for (int col = 1; col < columns + 2; col++) {
+				System.out.print(gameField[row][col] + "\t ");
+			}
+			System.out.println();
+		}
 	}
 }
