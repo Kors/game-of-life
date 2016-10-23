@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertEquals;
 public class GameOfLifeMoveOnTest {
 
 	GameOfLife gol;
-	Matrix startMatrix;
+	GameField startGameField;
 
 	@Before
 	public void init() {
@@ -23,13 +23,13 @@ public class GameOfLifeMoveOnTest {
 				{3, 1, 2, 0, 2, 1},
 				{2, 0, 1, 1, 2, 0},
 		};
-		startMatrix = new Matrix(m);
+		startGameField = new GameField(m);
 		gol.initGameField(m);
 	}
 
 	@Test
 	public void moveOnTest() {
 		gol.moveOn();
-		assertEquals(gol.matrix, calcNextStep(startMatrix));
+		assertEquals(gol.gameField, calcNextStep(startGameField));
 	}
 }

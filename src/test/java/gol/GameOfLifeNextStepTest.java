@@ -16,37 +16,37 @@ import static junit.framework.TestCase.assertEquals;
  */
 @RunWith(Parameterized.class)
 public class GameOfLifeNextStepTest {
-	Matrix stateBefore;
-	Matrix stateAfter;
+	GameField stateBefore;
+	GameField stateAfter;
 
-	public GameOfLifeNextStepTest(Matrix stateBefore, Matrix stateAfter) {
+	public GameOfLifeNextStepTest(GameField stateBefore, GameField stateAfter) {
 		this.stateBefore = stateBefore;
 		this.stateAfter = stateAfter;
 	}
 
 	@Parameterized.Parameters
 	public static Collection<Object[]> data() {
-		Matrix m0 = new Matrix(new CellState[][]{
+		GameField gf0 = new GameField(new CellState[][]{
 				{ALIVE, DEAD, DEAD},
 				{DEAD, ALIVE, ALIVE},
 				{DIEING, DIEING, BEARING}});
-		Matrix m1 = new Matrix(new CellState[][]{
+		GameField gf1 = new GameField(new CellState[][]{
 				{DIEING, BEARING, DEAD},
 				{DEAD, DIEING, ALIVE},
 				{ALIVE, ALIVE, ALIVE}});
-		Matrix m2 = new Matrix(new CellState[][]{
+		GameField gf2 = new GameField(new CellState[][]{
 				{DEAD, ALIVE, DEAD},
 				{DEAD, DEAD, ALIVE},
 				{ALIVE, DIEING, ALIVE}});
-		Matrix m3 = new Matrix(new CellState[][]{
+		GameField gf3 = new GameField(new CellState[][]{
 				{DEAD, DIEING, DEAD},
 				{BEARING, DEAD, ALIVE},
 				{DIEING, ALIVE, ALIVE}});
 
 		Object[][] params = new Object[][]{
-				{m0, m1},
-				{m1, m2},
-				{m2, m3},
+				{gf0, gf1},
+				{gf1, gf2},
+				{gf2, gf3},
 		};
 		return Arrays.asList(params);
 	}

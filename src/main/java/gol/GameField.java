@@ -7,24 +7,24 @@ import static gol.CellState.DIEING;
 /**
  * @author K.ilya
  */
-public class Matrix implements Cloneable {
-	private CellState[][] gameField;
+public class GameField implements Cloneable {
+	private CellState[][] matrix;
 	private int rows;
 	private int columns;
 
-	Matrix(CellState[][] stateMatrix) {
+	GameField(CellState[][] stateMatrix) {
 		this.rows = stateMatrix.length;
 		this.columns = stateMatrix[0].length;  // TODO should be better ?!
 		initField(stateMatrix);
 	}
 
-	public Matrix(int[][] stateCodes) {
+	public GameField(int[][] stateCodes) {
 		this.rows = stateCodes.length;
 		this.columns = stateCodes[0].length;  // TODO should be better ?!
 		initEmptyField();
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
-				gameField[row + 1][col + 1] = CellState.valueOf(stateCodes[row][col]);
+				matrix[row + 1][col + 1] = CellState.valueOf(stateCodes[row][col]);
 			}
 		}
 	}
@@ -33,16 +33,16 @@ public class Matrix implements Cloneable {
 		initEmptyField();
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
-				gameField[row + 1][col + 1] = stateMatrix[row][col];
+				matrix[row + 1][col + 1] = stateMatrix[row][col];
 			}
 		}
 	}
 
 	private void initEmptyField() {
-		gameField = new CellState[rows + 2][columns + 2];
+		matrix = new CellState[rows + 2][columns + 2];
 		for (int row = 0; row < rows + 2; row++) {
 			for (int col = 0; col < columns + 2; col++) {
-				gameField[row][col] = DEAD;
+				matrix[row][col] = DEAD;
 			}
 		}
 	}
@@ -59,29 +59,29 @@ public class Matrix implements Cloneable {
 
 	// internal numbers
 	private boolean isAlive(int row, int col) {
-		return ALIVE.equals(gameField[row][col]) ||
-				DIEING.equals(gameField[row][col]);
+		return ALIVE.equals(matrix[row][col]) ||
+				DIEING.equals(matrix[row][col]);
 	}
 
-	public Matrix clone() throws CloneNotSupportedException {
-		Matrix matrix = (Matrix) super.clone();
-		matrix.gameField = gameField.clone();
-		return matrix;
+	public GameField clone() throws CloneNotSupportedException {
+		GameField gameField = (GameField) super.clone();
+		gameField.matrix = this.matrix.clone();
+		return gameField;
 	}
 
 	public boolean equals(Object o) {
-		if (!(o instanceof Matrix))
+		if (!(o instanceof GameField))
 			return false;
-		Matrix m = (Matrix) o;
+		GameField m = (GameField) o;
 		return rows == m.rows &&
 				columns == m.columns &&
-				fieldEqual(m.gameField);
+				fieldEqual(m.matrix);
 	}
 
 	private boolean fieldEqual(CellState[][] field) {
 		for (int row = 0; row < rows + 2; row++) {
 			for (int col = 0; col < columns + 2; col++) {
-				if (!gameField[row][col].equals(field[row][col])) {
+				if (!matrix[row][col].equals(field[row][col])) {
 					return false;
 				}
 			}
@@ -91,7 +91,7 @@ public class Matrix implements Cloneable {
 
 	public int hashCode() {
 		int hashCode = rows * 37 + columns;
-		for (CellState[] line : gameField) {
+		for (CellState[] line : matrix) {
 			for (CellState cell : line) {
 				hashCode *= 37;
 				hashCode += cell.hashCode();
@@ -109,13 +109,13 @@ public class Matrix implements Cloneable {
 	}
 
 	public CellState getCellState(int row, int col) {
-		return gameField[row + 1][col + 1];
+		return matrix[row + 1][col + 1];
 	}
 
 	public void show() {
 		for (int row = 1; row < rows + 2; row++) {
 			for (int col = 1; col < columns + 2; col++) {
-				System.out.print(gameField[row][col] + "\t ");
+				System.out.print(matrix[row][col] + "\t ");
 			}
 			System.out.println();
 		}

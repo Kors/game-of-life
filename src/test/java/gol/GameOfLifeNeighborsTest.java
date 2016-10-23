@@ -15,12 +15,12 @@ import static junit.framework.TestCase.assertEquals;
  */
 @RunWith(Parameterized.class)
 public class GameOfLifeNeighborsTest {
-	Matrix stateBefore;
+	GameField stateBefore;
 	int row;
 	int col;
 	int neighboursExpected;
 
-	public GameOfLifeNeighborsTest(Matrix stateBefore, int row, int col, int neighboursExpected) {
+	public GameOfLifeNeighborsTest(GameField stateBefore, int row, int col, int neighboursExpected) {
 		this.stateBefore = stateBefore;
 		this.row = row;
 		this.col = col;
@@ -33,13 +33,13 @@ public class GameOfLifeNeighborsTest {
 				{ALIVE, DEAD, DEAD},
 				{DEAD, ALIVE, ALIVE},
 				{DIEING, DIEING, BEARING}};
-		Matrix m1 = new Matrix(state);
+		GameField gf = new GameField(state);
 
 		Object[][] params = new Object[][]{
-				{m1, 0, 0, 1},
-				{m1, 0, 1, 3},
-				{m1, 0, 2, 2},
-				{m1, 1, 1, 4},
+				{gf, 0, 0, 1},
+				{gf, 0, 1, 3},
+				{gf, 0, 2, 2},
+				{gf, 1, 1, 4},
 		};
 		return Arrays.asList(params);
 	}

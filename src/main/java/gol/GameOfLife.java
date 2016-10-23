@@ -14,32 +14,35 @@ public class GameOfLife {
 			{DEAD, DEAD, ALIVE, ALIVE, DEAD, DEAD, DEAD, DEAD, DEAD}, // in BEARING state
 	};
 
-	public Matrix matrix;
+	GameField oldGameField;
+	GameField gameField;
 
-	static CellState getNextCellState(CellState state, int neighboursCount) {
-		return nextState[state.ordinal()][neighboursCount];
+	void initGameField(int[][] m) {
+		oldGameField = null;
+		gameField = new GameField(m);
 	}
 
-	static Matrix calcNextStep(Matrix before) {
+	void moveOn() {
+		oldGameField = gameField;
+		gameField = calcNextStep(gameField);
+		repaint();
+	}
+
+	private void repaint() {
+		gameField.show();
+	}
+
+	static GameField calcNextStep(GameField before) {
 		CellState[][] after = new CellState[before.getRows()][before.getColumns()];
 		for (int row = 0; row < before.getRows(); row++) {
 			for (int col = 0; col < before.getColumns(); col++) {
 				after[row][col] = getNextCellState(before.getCellState(row, col), before.getNeighboursCount(row, col));
 			}
 		}
-		return new Matrix(after);
+		return new GameField(after);
 	}
 
-	public void initGameField(int[][] m) {
-		matrix = new Matrix(m);
-	}
-
-	public void moveOn() {
-		matrix = calcNextStep(matrix);
-		repaint();
-	}
-
-	private void repaint() {
-		matrix.show();
+	static CellState getNextCellState(CellState state, int neighboursCount) {
+		return nextState[state.ordinal()][neighboursCount];
 	}
 }
