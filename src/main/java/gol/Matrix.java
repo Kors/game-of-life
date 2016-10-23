@@ -12,9 +12,6 @@ public class Matrix implements Cloneable {
 	private int rows;
 	private int columns;
 
-	private Matrix() {
-	}
-
 	Matrix(CellState[][] stateMatrix) {
 		this.rows = stateMatrix.length;
 		this.columns = stateMatrix[0].length;
@@ -55,10 +52,8 @@ public class Matrix implements Cloneable {
 				DIEING.equals(gameField[row][col]);
 	}
 
-	public Matrix clone() {
-		Matrix matrix = new Matrix();
-		matrix.rows = rows;
-		matrix.columns = columns;
+	public Matrix clone() throws CloneNotSupportedException {
+		Matrix matrix = (Matrix) super.clone();
 		matrix.gameField = gameField.clone();
 		return matrix;
 	}
@@ -84,9 +79,14 @@ public class Matrix implements Cloneable {
 	}
 
 	public int hashCode() {
-		return rows +
-				columns * 33 +
-				gameField[1][1].ordinal() * 33 * 33;
+		int hashCode = rows * 37 + columns;
+		for (CellState[] line : gameField) {
+			for (CellState cell : line) {
+				hashCode *= 37;
+				hashCode += cell.hashCode();
+			}
+		}
+		return hashCode;
 	}
 
 	public int getRows() {
