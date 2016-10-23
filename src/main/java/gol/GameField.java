@@ -115,7 +115,7 @@ public class GameField implements Cloneable {
 	public void show() {
 		for (int row = 1; row < rows + 2; row++) {
 			for (int col = 1; col < columns + 2; col++) {
-				System.out.print(matrix[row][col] + "\t ");
+				System.out.print(matrix[row][col] + "\t\t");
 			}
 			System.out.println();
 		}

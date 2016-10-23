@@ -31,5 +31,6 @@ public class GameOfLifeMoveOnTest {
 	public void moveOnTest() {
 		gol.moveOn();
 		assertEquals(gol.gameField, calcNextStep(startGameField));
+		assertEquals(gol.oldGameField, startGameField);
 	}
 }
