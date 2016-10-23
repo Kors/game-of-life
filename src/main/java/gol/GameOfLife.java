@@ -14,6 +14,8 @@ public class GameOfLife {
 			{DEAD, DEAD, ALIVE, ALIVE, DEAD, DEAD, DEAD, DEAD, DEAD}, // in BEARING state
 	};
 
+	public Matrix matrix;
+
 	static CellState getNextCellState(CellState state, int neighboursCount) {
 		return nextState[state.ordinal()][neighboursCount];
 	}
@@ -26,5 +28,13 @@ public class GameOfLife {
 			}
 		}
 		return new Matrix(after);
+	}
+
+	public void initGameField() {
+		matrix = null;
+	}
+
+	public void moveOn() {
+
 	}
 }

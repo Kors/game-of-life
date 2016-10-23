@@ -18,6 +18,15 @@ public class Matrix implements Cloneable {
 		initField(stateMatrix);
 	}
 
+	public Matrix(int[][] ints) {
+		initEmptyField();
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < columns; col++) {
+				gameField[row + 1][col + 1] = CellState.valueOf(ints[row][col]);
+			}
+		}
+	}
+
 	private void initField(CellState[][] stateMatrix) {
 		initEmptyField();
 		for (int row = 0; row < rows; row++) {
